@@ -1,0 +1,3 @@
+@concat('SELECT * FROM [dbo].[SchemaMetadata] 
+WHERE SchemaName=''AdventureWorks'' 
+AND TableName=''',item().table_name,'''')
