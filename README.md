@@ -1,8 +1,12 @@
 # Building Medallion Architectures
 
-<img src="assets/cover.jpg" align="left" width="300" />
+<img src="assets/cover.png" align="left" width="300" />
 
-This GitHub repository contains all the Python and SQL notebooks and scripts used in the book "[Building Medallion Architectures](https://learning.oreilly.com/library/view/building-medallion-architectures/9781098178826/)". Here, you can find the code samples and examples that accompany each chapter of the book, allowing you to follow along and experiment with the concepts discussed. The repository is organized by layers, making it easy to locate the relevant scripts and notebooks for each topic. Feel free to clone, fork, and contribute to this repository as you explore the world of Medallion Architectures!
+This GitHub repository contains all the Python and SQL notebooks and scripts used in the book "[Building Medallion Architectures](https://learning.oreilly.com/library/view/building-medallion-architectures/9781098178826/)". Here, you can find the code samples and examples that accompany each chapter of the book, allowing you to follow along and experiment with the concepts discussed.
+
+The repository is organized by chapters, making it easy to locate the relevant scripts and notebooks for each topic. There is an additional folder called chapter-00-databricks that contains extra code snippets. These were created at the time of writing with the assumption that I would describe a hybrid architecture.
+
+Feel free to clone, fork, and contribute to this repository as you explore the world of Medallion Architectures!
 
 Other useful links:
 
