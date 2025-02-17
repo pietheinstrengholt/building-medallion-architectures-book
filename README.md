@@ -8,10 +8,7 @@ The repository is organized by chapters, making it easy to locate the relevant s
 
 Feel free to clone, fork, and contribute to this repository as you explore the world of Medallion Architectures!
 
-
-
-
-
+<br />
 Other useful links:
 
 - [Building the Medallion foundation with Azure Databricks and Unity Catalog](https://medium.com/@piethein/building-the-medallion-foundation-with-azure-databricks-and-unity-catalog-f4b42e7983d1)
