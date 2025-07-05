@@ -14,3 +14,10 @@ Other useful links:
 - [Building the Medallion foundation with Azure Databricks and Unity Catalog](https://medium.com/@piethein/building-the-medallion-foundation-with-azure-databricks-and-unity-catalog-f4b42e7983d1)
 
 - [Construct the Bronze Layer with Azure Databricks](https://medium.com/@piethein/construct-the-bronze-layer-with-azure-databricks-426106a2c11d)
+
+<img src="assets/medallion_architecture.png" align="left" width="300" />
+
+- [Ground work](ground_work.md)
+- [Bronze Layer](bronze_instruct.md)
+- [Silver Layer](silver_instruct.md)
+- [Gold Layer](gold_instruct.md)
