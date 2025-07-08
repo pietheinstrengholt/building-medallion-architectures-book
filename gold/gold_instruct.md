@@ -69,3 +69,53 @@ Its key characteristics are that it’s highly curated and optimized for consump
 ## The Gold Layer in Practice
 To achieve this, aligning closely with data governance is crucial to maintain compliance, integrity, and security. It’s important to document and catalog all datasets, maintain
 transparency about how data is used, and segment data for specific use cases. Clearly defining roles and responsibilities within this framework also ensures accountability and adherence to best practices.
+
+
+Steps:
+1. Once you’ve defined the subject area you’re focusing on, determine the central fact table(s). This table should contain key measurements or metrics for analysis, such as sales, revenue, or customer counts. 
+2. Next, you should design the dimension tables to provide context for the facts, with attributes like time, geography, product, or customer. 
+3. Finally, you should establish relationships between the fact and dimension tables using foreign keys to complete the schema. 
+
+It is important to note that when loading data into the star schema, you must always start with the dimension tables, followed by the fact table(s). This sequence is crucial to maintain the integrity of the key relationships.
+
+
+Good practices:
+
+- Simplify for non-SQL users
+    For end users or data scientists who are not well-versed in SQL, a single, large table may be easier to understand than a star schema, even though it may not be as efficient for queries and maintenance. Additionally, creating a semantic model that features tables and columns with
+    user-friendly names can also help those unfamiliar with SQL. Therefore, your Gold layer might include additional sublayers designed to be more accessible and user- friendly.
+
+- Improve data quality
+    Incorporating an additional data quality step in the Gold layer is strongly recommended, following the cleaning and joining of data in the Silver layer, to ensure the successful construction of the integrated dataset.
+
+    Furthermore, to ensure records can be accurately joined, you could ingest a placeholder record into each dimension in the Silver layer. This record would have a value of 0 for each column, making it easier to identify and address any missing data in the Gold layer. This is for situations where there is not a dimension record for an ID in the fact table. This placeholder record would help to identify the missing data and ensure the join is still successful.
+
+- Enhance performance
+    Adding partitioning to the schema could improve query performance by reducing the data volume scanned during queries. Another performance improvement could be
+    implemented by using smaller lookup tables for retrieving the hashes of the dimension tables. This would reduce the amount of data scanned during joins.
+
+- Include auditing and processing columns
+    Adding columns like created_at , updated_at , and source_system to both fact and dimension tables helps
+    track data lineage and facilitate troubleshooting.
+
+- Implement data security measures
+    You can introduce columns for row-level security to restrict data access based on user roles or permissions. For example, for the AdventureWorks database, you could introduce an additional HumanResources.Employee table to restrict data access based on the department each employee belongs to. You could then use the system function to match the LoginID in the
+    table, determining which data the user can access. See Microsoft Fabric and Power BI for more information on row-level security.
+
+- Consider additional layers
+    Depending on the complexity of the data and the needs of the users, you might need to introduce additional layers (with fit-for-purpose tables) within the Gold layer. These layers could be for different use cases or business units; different applications might have varying requirements regarding data structure, granularity, or aggregation levels. These sublayers can be optimized individually, for instance by partitioning based on the usage characteristics. You could do something similar for overlapping requirements. You could create a common integration layer with conformed dimensions and data that is often input for different use cases. Then, you could add sublayers for specific use cases that require additional data or different aggregations.
+
+-  Consider a physical serving layer
+    Depending on the complexity of the data and the needs of the users, you might need to introduce a physical serving layer. This is where data is copied from the Gold layer into one or more services as a way to make it easier for end users to access—products such as Azure Cosmos DB, Azure SQL Database, or a database for real-time intelligence.
+
+    When it comes to technology architecture, particularly for the serving layer, it’s crucial to understand that choosing a database or service is a complex procedure. It requires considering various factors and making numerous
+    compromises. Beyond data structure, you’ll need to assess your requirements in terms of consistency, availability, caching, timeliness, and indexing for enhanced performance. There are a variety of methods for storing and retrieving data, such as using small or large chunks, sorted chunks, etc. Contrary to what some enthusiasts may suggest, no single service can perfectly cater to all aspects simultaneously. A typical lakehouse architecture, therefore, usually comprises a blend of diverse technology services, such as a serverless SQL service for ad hoc queries, a columnar store for fast reporting, a relational database for more complicated queries, and a time-series store for IoT and stream analysis, among others.
+
+- Consider no-code or low-code tooling
+    Depending on the user base, it might be beneficial to introduce a no-code or low-code tooling layer on top of the Gold layer. This would allow users to (self-service) transform data without needing to write notebooks or SQL queries.
+
+- Add Apache Airflow for orchestration
+    Depending on your organization’s requirements, you should consider adding Apache Airflow to orchestrate the data pipelines. You saw this in “Orchestration with Apache AirFlow”. This service can help automate the data pipeline, schedule jobs, and monitor the data processing.
+
+- Feature engineering and machine learning
+    Design your Silver and Gold layers to enhance feature engineering and experimentation for machine learning. This might involve adapting the design to include additional Lakehouse and Spark environments to support these activities.

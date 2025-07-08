@@ -1,3 +1,5 @@
+-- Semantic Model
+
 IF OBJECT_ID('adventureworks.v_dimension_customer', 'V') IS NOT NULL
     DROP VIEW adventureworks.v_dimension_customer
 GO
